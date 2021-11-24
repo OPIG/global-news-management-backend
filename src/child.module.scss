@@ -1,0 +1,15 @@
+ul {
+  background-color: red;
+}
+
+li{
+  color: yellow;
+}
+
+span {
+  color: green;
+  &.test {
+    color: yellowgreen;
+  }
+}
+
