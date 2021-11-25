@@ -1,19 +1,47 @@
-import React from 'react'
-import { Layout } from 'antd';
-import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined
-} from '@ant-design/icons';
+import React, { useState } from 'react'
+import { Layout, Menu, Dropdown, Avatar } from 'antd'
+import { MenuUnfoldOutlined, MenuFoldOutlined, DownOutlined, UserOutlined } from '@ant-design/icons'
 import Style from './topHeader.module.scss'
 
-const { Header } = Layout;
+const { Header } = Layout
+
+const menu = (
+  <Menu>
+    <Menu.Item>
+      超级管理员
+    </Menu.Item>
+    <Menu.Item danger>logout</Menu.Item>
+  </Menu>
+);
+
+
 export default function TopHeader() {
-  console.log(Style, '===')
+  const [isCollpased, setIsCollpased] = useState(false)
+  const changeCollpased = () => {
+    setIsCollpased(!isCollpased)
+  }
+
   return (
-    <Header className="site-layout-background" style={{padding: "0 16px"}}>
-    {React.createElement(true ? MenuUnfoldOutlined : MenuFoldOutlined, {
+    <Header className="site-layout-background" style={{ padding: '0 16px' }}>
+      {isCollpased ? (
+        <MenuUnfoldOutlined onClick={changeCollpased} />
+      ) : (
+        <MenuFoldOutlined onClick={changeCollpased} />
+      )}
+      {/* {React.createElement(isCollpased ? MenuUnfoldOutlined : MenuFoldOutlined, {
       className: 'trigger',
-    })}
-  </Header>
+    })} */}
+      <div className={Style.topInfo}>
+        <span>
+          欢迎<b>管理员</b>回来
+        </span>
+        <Dropdown overlay={menu}>
+          <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+          <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />
+          <DownOutlined />
+          </a>
+        </Dropdown>
+      </div>
+    </Header>
   )
 }

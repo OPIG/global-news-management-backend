@@ -1,13 +1,14 @@
 import React from 'react'
 import { Routes, Route, Outlet } from 'react-router-dom'
 import { Layout, Menu } from 'antd'
-import SideMenu from '../../components/sandBox/SideMenu'
 import UserList from './user-manage/UserList'
 import RoleList from './right-manage/RoleList'
 import RightList from './right-manage/RightList'
 import Home from './home/Home'
 import NoPermission from './noPermission/NoPermission'
 import TopHeader from '../../components/sandBox/topHeader/TopHeader'
+import SideMenu from '../../components/sandBox/sideMenu/SideMenu'
+
 const { Content } = Layout;
 
 export default function NewsSandBox() {
