@@ -4,6 +4,8 @@
 
 react-router-dom v6 : https://zhuanlan.zhihu.com/p/427572601
 
+新版问题解决方式整理 https://blog.csdn.net/Aquamay/article/details/121590592
+
 ### 嵌套路由写法一
 ```jsx
   
@@ -48,6 +50,47 @@ react-router-dom v6 : https://zhuanlan.zhihu.com/p/427572601
 </Route>
 
 ```
+
+### create-react-app 完整配置别名alias方法
+<https://www.cnblogs.com/diantao/p/13354991.html>
+<https://medium.com/deskera-engineering/creating-path-aliases-in-create-react-app-with-react-app-rewired-c2cde81b472>
+
+1、安装依赖
+
+```js
+npm install react-app-rewired --save-dev
+npm install customize-cra --save-dev
+
+```　　
+
+2、根目录创建config-overrides.js文件，注意名字不要写错，内容如下
+
+``` js
+const { override, fixBabelImports, addWebpackAlias } = require('customize-cra')
+const path = require('path')
+function resolve(dir) {
+    return path.join(__dirname, '.', dir)
+}
+module.exports = override(
+    addWebpackAlias({
+        ["@"]: path.resolve(__dirname, "src")
+    })
+)
+　　
+```
+
+3、修改package.json的scripts部分，如下
+
+```js
+"dev": "react-app-rewired start",
+"build:prod": "react-app-rewired build"
+```
+
+原来由react-scripts启动/打包的改成以`react-app-rewired`打包/启动
+
+
+
+==================================
 
 ## Getting Started with Create React App
 

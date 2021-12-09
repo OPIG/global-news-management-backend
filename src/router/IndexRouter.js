@@ -1,5 +1,5 @@
 import React from 'react'
-import { HashRouter, Route, Routes } from "react-router-dom"
+import { HashRouter, Route, Routes, Navigate } from "react-router-dom"
 import Login from '../views/login/Login'
 import Test from '../views/login/Test'
 import NewsSandBox from '../views/sandBox/NewsSandBox'
@@ -8,9 +8,9 @@ export default function IndexRouter() {
   return (
     <HashRouter>
       <Routes>
-        <Route path="/login" element={true? <Test/>:<Login/>}></Route>
+        <Route path="/login" element={localStorage.getItem("token") ? <Test/>:<Login/>}></Route>
         {/* 写法一 /* */}
-        <Route path="/*" element={<NewsSandBox/>}></Route>
+        <Route path="/*" element={localStorage.getItem("token") ? <NewsSandBox/>:<Navigate to="/login"/>}></Route>
         {/* 写法二 Route嵌套配合Outlet实现嵌套 */}
         {/* <Route path="/" element={<NewsSandBox/>}>
           <Route index element={<Home/>}></Route>
@@ -19,7 +19,7 @@ export default function IndexRouter() {
           <Route path="right-manage/right/list" element={<RightList/>}></Route>
           <Route path="*" element={<NoPermission/>}></Route>
         </Route> */}
-        <Route path="*" element={<span>there is no per</span>}></Route>
+        <Route path="*" element={<span>there is no permission</span>}></Route>
       </Routes>
       </HashRouter>
   )
