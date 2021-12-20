@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route, Outlet } from 'react-router-dom'
+import { Routes, Route, Outlet, Navigate } from 'react-router-dom'
 import { Layout, Menu } from 'antd'
 import UserList from './user-manage/UserList'
 import RoleList from './right-manage/RoleList'
@@ -22,19 +22,21 @@ export default function NewsSandBox() {
           style={{
             margin: '24px 16px',
             padding: 24,
-            minHeight: 280
+            minHeight: 280,
+            overflow: 'auto'
           }}
         >
           {/* 写法一 */}
           <Routes>
             {/* 注意：默认项添加index属性且没有path属性 */}
-            <Route index element={<Home />}></Route>
+            <Route index path="home" element={<Home />}></Route>
             <Route path="user-manage/list" element={<UserList />}></Route>
             <Route path="right-manage/role/list" element={<RoleList />}></Route>
             <Route
               path="right-manage/right/list"
               element={<RightList />}
             ></Route>
+            <Route path="/" element={<Navigate replace from="/" to="home"/>} />
             <Route path="*" element={<NoPermission />}></Route>
           </Routes>
           {/* 写法二 Outlet */}
