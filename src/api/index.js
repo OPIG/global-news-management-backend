@@ -92,6 +92,24 @@ export function deleteRolesById (id) {
   })
 }
 
+/**
+ * 更新权限
+ * @param {*} data 
+ * @returns 
+ */
+export function patchRolesRightsById(data) {
+  const { id, rights } = data
+  return new Promise((resolve, reject) => {
+    axios.patch(`/api/roles/${id}`, {
+      rights
+    }).then(res => {
+      resolve(res)
+    }).catch(_=>{
+      reject()
+    })
+  })
+}
+
 export function getNavbarList() {
   axios.get('/rights?_embed=children').then((res) => {
     return res.data
