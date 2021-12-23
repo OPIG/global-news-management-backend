@@ -36,10 +36,10 @@ export default function TopHeader() {
           欢迎<b>管理员</b>回来
         </span>
         <Dropdown overlay={menu}>
-          <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+          <button className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
           <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />
           <DownOutlined />
-          </a>
+          </button>
         </Dropdown>
       </div>
     </Header>

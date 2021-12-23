@@ -89,13 +89,13 @@ export default function RightList() {
 
   const deleteConfirm = (item) => {
     if (item.grade === 1) {
-      setcurrDataSouce(currDataSouce?.filter((data) => data.id != item.id))
+      setcurrDataSouce(currDataSouce?.filter((data) => data.id !== item.id))
       deleteRightsById(item.id)
     } else {
       const list = JSON.parse(JSON.stringify(currDataSouce))
       let childrenList = list.find((data) => data.id === item.rightId)
       childrenList.children = childrenList?.children.filter(
-        (data) => data.id != item.id
+        (data) => data.id !== item.id
       )
       console.log(list, childrenList)
       setcurrDataSouce(list)

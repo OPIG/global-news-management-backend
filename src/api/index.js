@@ -12,58 +12,70 @@ axios.interceptors.request.use((payload) => {
  */
 export function getAllRightsList() {
   return new Promise((resolve, reject) => {
-    axios.get('/api/rights?_embed=children').then((res) => {
-      resolve(res?.data)
-    }).catch(e=>{
-      reject([])
-    })
+    axios
+      .get('/api/rights?_embed=children')
+      .then((res) => {
+        resolve(res?.data)
+      })
+      .catch((e) => {
+        reject([])
+      })
   })
 }
 
 /**
  * 删除一级目录
- * @param {*} id 
- * @returns 
+ * @param {*} id
+ * @returns
  */
 export function deleteRightsById(id) {
   return new Promise((resolve, reject) => {
-    axios.delete(`/api/rights/${id}`).then(res =>{
-      resolve(res?.data)
-    }).catch(e=>{
-      reject()
-    })
+    axios
+      .delete(`/api/rights/${id}`)
+      .then((res) => {
+        resolve(res?.data)
+      })
+      .catch((e) => {
+        reject()
+      })
   })
 }
 
 /**
  * 删除二级目录
- * @param {*} id 
- * @returns 
+ * @param {*} id
+ * @returns
  */
 export function deleteChildrenRightsById(id) {
   return new Promise((resolve, reject) => {
-    axios.delete(`/api/children/${id}`).then(res =>{
-      resolve(res?.data)
-    }).catch(e=>{
-      reject()
-    })
+    axios
+      .delete(`/api/children/${id}`)
+      .then((res) => {
+        resolve(res?.data)
+      })
+      .catch((e) => {
+        reject()
+      })
   })
 }
 
 /**
  * 开关权限
- * @param {*} 
- * @returns 
+ * @param {*}
+ * @returns
  */
 export function updatePermission(data) {
   return new Promise((resolve, reject) => {
-    axios.patch(`/api/${data.type}/${data.id}`, {
-      pagepermission: data.pagepermission
-    }).then(res =>{
-      resolve(res?.data)
-    }).catch(e=>{
-      reject()
-    })
+    axios
+      .patch(`/api/${data.type}/${data.id}`, {
+        pagepermission: data.pagepermission
+      })
+      .then((res) => {
+        resolve(res?.data)
+      })
+      .catch((e) => {
+        reject()
+      })
   })
 }
 
@@ -74,41 +86,69 @@ export function updatePermission(data) {
  */
 export function getRolesList() {
   return new Promise((resolve, reject) => {
-    axios.get(`/api/roles`).then(res => {
-      resolve(res?.data)
-    }).catch(e=>{
-      reject()
-    })
+    axios
+      .get(`/api/roles`)
+      .then((res) => {
+        resolve(res?.data)
+      })
+      .catch((e) => {
+        reject()
+      })
   })
 }
 
-export function deleteRolesById (id) {
+export function deleteRolesById(id) {
   return new Promise((resolve, reject) => {
-    axios.delete(`/api/roles/${id}`).then(res => {
-      resolve(res?.data)
-    }).catch(_ => {
-      reject()
-    })
+    axios
+      .delete(`/api/roles/${id}`)
+      .then((res) => {
+        resolve(res?.data)
+      })
+      .catch((_) => {
+        reject()
+      })
   })
 }
 
 /**
  * 更新权限
- * @param {*} data 
- * @returns 
+ * @param {*} data
+ * @returns
  */
 export function patchRolesRightsById(data) {
   const { id, rights } = data
   return new Promise((resolve, reject) => {
-    axios.patch(`/api/roles/${id}`, {
-      rights
-    }).then(res => {
-      resolve(res)
-    }).catch(_=>{
-      reject()
-    })
+    axios
+      .patch(`/api/roles/${id}`, {
+        rights
+      })
+      .then((res) => {
+        resolve(res)
+      })
+      .catch((_) => {
+        reject()
+      })
   })
 }
+
+/**
+ * 获取用户列表
+ * @returns
+ */
+export function getUserLists() {
+  return new Promise((resolve, reject) => {
+    axios
+      .get('/api/users?_expand=role')
+      .then((res) => {
+        resolve(res?.data)
+      })
+      .catch((err) => {
+        reject()
+      })
+  })
+}
+
+// ====
 
 export function getNavbarList() {
   axios.get('/rights?_embed=children').then((res) => {
@@ -116,12 +156,15 @@ export function getNavbarList() {
   })
 }
 
-export function getRighstList () {
+export function getRighstList() {
   return new Promise((resolve, reject) => {
-    axios.get('/api/rights').then(res => {
-      resolve(res?.data)
-    }).catch(e=>{
-      reject(e)
-    })
+    axios
+      .get('/api/rights')
+      .then((res) => {
+        resolve(res?.data)
+      })
+      .catch((e) => {
+        reject(e)
+      })
   })
 }
