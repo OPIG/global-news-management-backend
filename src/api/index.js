@@ -17,7 +17,7 @@ export function getAllRightsList() {
       .then((res) => {
         resolve(res?.data)
       })
-      .catch((e) => {
+      .catch((err) => {
         reject([])
       })
   })
@@ -35,8 +35,8 @@ export function deleteRightsById(id) {
       .then((res) => {
         resolve(res?.data)
       })
-      .catch((e) => {
-        reject()
+      .catch((err) => {
+        reject(err)
       })
   })
 }
@@ -53,8 +53,8 @@ export function deleteChildrenRightsById(id) {
       .then((res) => {
         resolve(res?.data)
       })
-      .catch((e) => {
-        reject()
+      .catch((err) => {
+        reject(err)
       })
   })
 }
@@ -73,8 +73,8 @@ export function updatePermission(data) {
       .then((res) => {
         resolve(res?.data)
       })
-      .catch((e) => {
-        reject()
+      .catch((err) => {
+        reject(err)
       })
   })
 }
@@ -91,8 +91,8 @@ export function getRolesList() {
       .then((res) => {
         resolve(res?.data)
       })
-      .catch((e) => {
-        reject()
+      .catch((err) => {
+        reject(err)
       })
   })
 }
@@ -104,8 +104,8 @@ export function deleteRolesById(id) {
       .then((res) => {
         resolve(res?.data)
       })
-      .catch((_) => {
-        reject()
+      .catch((err) => {
+        reject(err)
       })
   })
 }
@@ -125,8 +125,8 @@ export function patchRolesRightsById(data) {
       .then((res) => {
         resolve(res)
       })
-      .catch((_) => {
-        reject()
+      .catch((err) => {
+        reject(err)
       })
   })
 }
@@ -143,11 +143,38 @@ export function getUserLists() {
         resolve(res?.data)
       })
       .catch((err) => {
-        reject()
+        reject(err)
       })
   })
 }
 
+/**
+ * 获取区域列表
+ * @returns 
+ */
+export function getRegionList() {
+  return new Promise((resolve, reject) => {
+    axios.get('/api/regions').then(res => {
+      resolve(res?.data)
+    }).catch(err => {
+      reject(err)
+    })
+  })
+}
+
+/**
+ * 获取分类列表
+ * @returns 
+ */
+export function getCategoriesList() {
+  return new Promise((resolve, reject) => {
+    axios.get('/api/categories').then(res => {
+      resolve(res?.data)
+    }).catch(err => {
+      reject(err)
+    })
+  })
+}
 // ====
 
 export function getNavbarList() {
@@ -163,8 +190,8 @@ export function getRighstList() {
       .then((res) => {
         resolve(res?.data)
       })
-      .catch((e) => {
-        reject(e)
+      .catch((err) => {
+        reject(err)
       })
   })
 }
